@@ -10,19 +10,23 @@ published: true
   </label>
 
   <div class="search-results"></div>
+  
+  <script type="text/javascript" src="./src/fetch.js"></script>
+<script type="text/javascript" src="./src/search.js"></script>
 
-  <script src="/fetch.js"></script>
-  <script src="/search.js"></script>
+ <script type="text/javascript">
 
-  <script>
+  // New search using example options
+  const search = new jekyllSearch(
+    'https://alembic.darn.es/assets/search.json',
+    '#search',
+    '#list',
+    'https://alembic.darn.es'
+  );
 
-    const search = new jekyllSearch(
-      '/search.json',
-      '.search-value',
-      '.search-results',
-    );
+  // Initialise
+  search.init();
 
-    search.init();
-
-  </script>
+</script>
+ 
 </div>
