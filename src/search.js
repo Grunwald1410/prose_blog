@@ -14,30 +14,36 @@ class jekyllSearch {
   }
 
   async findResults() {
+	this.resultsList.innerHTML = '<i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>';
     const data = await this.fetchedData()
     return data.filter(item => {
-      const regex = new RegExp(this.searchField.value, 'gi')
+	const inputValue = this.searchField.value.trim().replace(/\s/g, ' | ');/*<--*/
+      const regex = new RegExp(inputValue, 'gi');
       return item.title.match(regex) || item.content.match(regex)
     })
   }
 
-  async displayResults() {
-    const results = await this.findResults()
-    const html = results.map(item => {
-      return `
+ async displayResults() {
+    const results = await this.findResults();
+    const html = results.map(item => `
         <li class="result">
             <article class="result__article  article">
-                <h4>
-                  <a href="${this.siteURL + item.url}">${item.title}</a>
-                </h4>
-                <p>${item.excerpt}</p>
+                <div class="post-preview">
+                  <a href="${item.url}">
+                    <h2 class="post-title">${item.title}</h2>
+                    <h3 class="post-subtitle">${item.subtitle}</h3>
+                  </a>
+          
+                  <p class="post-meta">${item.date}</p>
+                </div>
             </article>
-        </li>`
-    }).join('')
-    if ((results.length == 0) || (this.searchField.value == '')) {
-      this.resultsList.innerHTML = `<p>Sorry, nothing was found</p>`
+            
+            <hr>
+        </li>`).join('');
+    if ((results.length === 0) || (this.searchField.value === '')) {
+      this.resultsList.innerHTML = '<p>Nic nie znaleziono</p>';
     } else {
-      this.resultsList.innerHTML = html
+      this.resultsList.innerHTML = html;
     }
   }
 
