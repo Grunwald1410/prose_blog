@@ -1,8 +1,6 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
+published: true
 ---
 
 <div class="search-engine">
@@ -13,13 +11,13 @@ layout: home
 
   <div class="search-results"></div>
 
-  <script src="/dist/js/search/fetch.min.js"></script>
-  <script src="/dist/js/search/search.min.js"></script>
+  <script src="/fetch.js"></script>
+  <script src="/search.js"></script>
 
   <script>
 
     const search = new jekyllSearch(
-      '/dist/js/search/search.json',
+      '/search.json',
       '.search-value',
       '.search-results',
     );
