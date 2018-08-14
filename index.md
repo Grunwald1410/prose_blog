@@ -1,6 +1,4 @@
 ---
-layout: home
+layout: search
 published: true
 ---
-
-<script type="text/javascript" src="./_layouts/search.html"></script>
